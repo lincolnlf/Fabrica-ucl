@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using System;
 
 class Estoque{
-
+  
   public static List<Produto> prods = new List<Produto>();
+
+  
 
   public void IncluirProduto(Produto produto){
     prods.Add(produto);
@@ -14,7 +16,6 @@ class Estoque{
       Console.WriteLine(prods[i].MostrarNaLista());
     }
   }
-
   public int  SomarQuantidade(){
 
     int somaquantidade = 0;
@@ -22,8 +23,8 @@ class Estoque{
     foreach(Produto p in prods){
       somaquantidade += p.getQuantidade();
     }
-
     return somaquantidade;
+
   }
 
   public float SomarCusto(){
@@ -36,12 +37,15 @@ class Estoque{
 
     return somacusto;
   }
-
   
- 
- 
- 
- 
-   
 
+  public void BuscarEstoque(string bc){
+     foreach(Produto p in prods){
+      if ( bc == p.getCodigo() ){
+        Console.WriteLine(p.MostrarNaLista());
+        //loja.RealizarCompra();
+      }
+    } 
+  }
+ 
 }

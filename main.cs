@@ -23,9 +23,11 @@ class MainClass {
       Console.WriteLine(" senha invalida!!!\n Não é possivel entrar no sistema.");
     }
   
-    while (opcao == 1 || senha == 1234 || opcao == 2){
+    while (opcao == 1 || senha == 1234 || opcao == 2 || opcao == 3){
+
+    Console.WriteLine(" Digite 4 para sair:");
   
-    Console.WriteLine(" Digite o número 1 para fabricar um produto:\n Digite o número 2 para entrar no sistema de estoque:");
+    Console.WriteLine(" Digite 1 para fabricar um produto:\n Digite 2 para entrar no sistema de estoque:\n Digite 3 para pedir produto do estoque:");
     opcao =int.Parse(Console.ReadLine());
    
     if (opcao == 1 ){
@@ -48,7 +50,13 @@ class MainClass {
     Console.WriteLine("Digite a quantidade:");
     int quantidade = int.Parse(Console.ReadLine());
 
-    Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade);
+    Console.WriteLine("Valor desejado para venda:");
+    int valor_desejada = int.Parse(Console.ReadLine());
+
+
+
+
+    Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
      
     Console.WriteLine(produto.ResumoDados());
 
@@ -77,31 +85,54 @@ class MainClass {
         Console.WriteLine("O valor total em estoque: R${0}",est.SomarCusto());
       }
 
-      
-
-
     }
-    else{
+
+    if ( opcao == 3 ){
+      est.MostrarProduto();
+
+    
+    Console.WriteLine("Buscar no estoque por codigo:");
+    string dadoCodigo = Console.ReadLine();
+    est.BuscarEstoque(dadoCodigo);
+
+    Console.WriteLine("Digite as informação para compra:");  
+
+    Console.WriteLine(" digite a quantidade de produtos para venda:");
+    int quantidadeCompra = int.Parse(Console.ReadLine());
+
+    Console.WriteLine("Digite o nome do cliente:");
+    string nome = Console.ReadLine();
+
+    Console.WriteLine("Digite o email do cliente:");
+    string email = Console.ReadLine();
+
+    Console.WriteLine("Digite o nome da empresa:");
+    string empresa = Console.ReadLine();
+
+    VenderProd venderproduto = new VenderProd(quantidadeCompra, nome , email, empresa);
+
+    
+
+
+
+
+       
+
+    }  
+    
+    if (opcao == 4){
       break;
     }
+    
     Console.WriteLine("Vamos limpar a tela aperte enter:");
     
-      Console.ReadLine();
-      Console.Clear();
+    Console.ReadLine();
+      Console.Clear();     
      
-    
-    
-    }
-
-
-
-
-
-
-   
-   
-    
   }
+
+  }
+
+}
   
  
-}
