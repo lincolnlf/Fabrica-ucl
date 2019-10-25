@@ -83,7 +83,7 @@ class Produto{
     custo = c;
   }
 
-  public void setQuatindade(int q){
+  public void setQuantidade(int q){
     quantidade = q ;
   }
 

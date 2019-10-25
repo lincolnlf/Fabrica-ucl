@@ -3,10 +3,8 @@ using System;
 
 class Estoque{
   
-  public static List<Produto> prods = new List<Produto>();
-
+  public  List<Produto> prods = new List<Produto>();
   
-
   public void IncluirProduto(Produto produto){
     prods.Add(produto);
   }
@@ -17,14 +15,13 @@ class Estoque{
     }
   }
   public int  SomarQuantidade(){
-
     int somaquantidade = 0;
 
     foreach(Produto p in prods){
       somaquantidade += p.getQuantidade();
     }
-    return somaquantidade;
 
+    return somaquantidade;
   }
 
   public float SomarCusto(){
@@ -43,9 +40,21 @@ class Estoque{
      foreach(Produto p in prods){
       if ( bc == p.getCodigo() ){
         Console.WriteLine(p.MostrarNaLista());
-        //loja.RealizarCompra();
+        
       }
+
     } 
+  }
+  public void removerestoque( string bc ,int qtd){
+
+    foreach(Produto p in prods){
+      if ( bc == p.getCodigo() ){
+        p.setQuantidade(p.getQuantidade()-qtd);
+
+        
+      }
+
+  }
   }
  
 }

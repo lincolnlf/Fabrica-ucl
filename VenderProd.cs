@@ -59,6 +59,10 @@ class VenderProd{
     empresa = ep;
   }
 
+  public string MostraCompra(){
+    return string.Format("empresa: {0}\n email{1}\n nome: {2} \n a quantidade de produto comprado:{3}",empresa,email,nome,quantidadeCompra);
+  }
+
   
   
 } 

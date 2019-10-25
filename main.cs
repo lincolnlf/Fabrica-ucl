@@ -11,16 +11,13 @@ class MainClass {
 
     Estoque est = new Estoque();
     fabrica.AssociarEstoque(est);
-    
-     
-    
 
     Console.WriteLine("Digite a senha para entrar no Sistema:");
     senha =int.Parse(Console.ReadLine());
 
     if( senha != 1234){
       Console.ForegroundColor = ConsoleColor.Red;
-      Console.WriteLine(" senha invalida!!!\n Não é possivel entrar no sistema.");
+      Console.WriteLine("Senha invalida !!!\n Não é possivel entrar no sistema.");
     }
   
     while (opcao == 1 || senha == 1234 || opcao == 2 || opcao == 3){
@@ -31,35 +28,39 @@ class MainClass {
     opcao =int.Parse(Console.ReadLine());
    
     if (opcao == 1 ){
-    Console.WriteLine("Digite o codigo do produto para ser fabricado: ");
+    Console.WriteLine("Digite o código do produto para ser fabricado: ");
     string codigo = Console.ReadLine();
 
-    Console.WriteLine("Digite o tipo do produto para ser fabricado: ");
-    string tipo = Console.ReadLine();
+    if(fabrica.VerificarCodigo(est.prods,codigo)){
 
-    Console.WriteLine("Digite o tamanho em número:");
-    int tamanho = int.Parse(Console.ReadLine());
+      Console.WriteLine("Digite o tipo do produto para ser fabricado: ");
+      string tipo = Console.ReadLine();
 
-    Console.WriteLine("Digite a descrição do produto: ");
-    string descrição = Console.ReadLine();
+      Console.WriteLine("Digite o tamanho em número:");
+      int tamanho = int.Parse(Console.ReadLine());
 
+      Console.WriteLine("Digite a descrição do produto: ");
+      string descrição = Console.ReadLine();
 
-    Console.WriteLine("Digite o custo de cada produto para ser fabricado: ");
-    float custo = float.Parse(Console.ReadLine());
+      Console.WriteLine("Digite o custo de cada produto para ser fabricado: ");
+      float custo = float.Parse(Console.ReadLine());
 
-    Console.WriteLine("Digite a quantidade:");
-    int quantidade = int.Parse(Console.ReadLine());
+      Console.WriteLine("Digite a quantidade:");
+      int quantidade = int.Parse(Console.ReadLine());
 
-    Console.WriteLine("Valor desejado para venda:");
-    int valor_desejada = int.Parse(Console.ReadLine());
+      Console.WriteLine("Valor desejado para venda:");
+      int valor_desejada = int.Parse(Console.ReadLine());
 
+      Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
+      
+      Console.WriteLine(produto.ResumoDados());
 
-
-
-    Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
-     
-    Console.WriteLine(produto.ResumoDados());
-
+    }
+    else{
+      Console.ForegroundColor = ConsoleColor.Red;
+      Console.WriteLine("código já existe!!!\n Tente novamente!!");
+    }
+    
     }  
     if (opcao == 2){
       int op = 0;
@@ -74,7 +75,6 @@ class MainClass {
         Console.WriteLine("========================");
         est.MostrarProduto();
         Console.WriteLine("========================");
-
       }
 
       if(op == 2){
@@ -84,13 +84,11 @@ class MainClass {
       if (op == 3){
         Console.WriteLine("O valor total em estoque: R${0}",est.SomarCusto());
       }
-
     }
 
     if ( opcao == 3 ){
-      est.MostrarProduto();
+    est.MostrarProduto();
 
-    
     Console.WriteLine("Buscar no estoque por codigo:");
     string dadoCodigo = Console.ReadLine();
     est.BuscarEstoque(dadoCodigo);
@@ -99,6 +97,7 @@ class MainClass {
 
     Console.WriteLine(" digite a quantidade de produtos para venda:");
     int quantidadeCompra = int.Parse(Console.ReadLine());
+    est.removerestoque(dadoCodigo,quantidadeCompra);
 
     Console.WriteLine("Digite o nome do cliente:");
     string nome = Console.ReadLine();
@@ -110,14 +109,9 @@ class MainClass {
     string empresa = Console.ReadLine();
 
     VenderProd venderproduto = new VenderProd(quantidadeCompra, nome , email, empresa);
-
     
-
-
-
-
-       
-
+     Console.WriteLine(venderproduto.MostraCompra());
+ 
     }  
     
     if (opcao == 4){

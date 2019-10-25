@@ -2,14 +2,11 @@ using System.Collections.Generic;
 class Fabrica{
 
   Estoque  est = new Estoque();
-  // aqui usei um metodo para criar um produto, estou usando public Produto para retornar o proprio produto 
-
+ 
   public Produto Criar_Produto(string codigo, string tipo,int tamanho , string descrição,float custo,int quantidade , float valor_desejada){
-    // dentro do parâmetro eu coloquei os atributos que vão receber as informações 
-
-    // aqui estou criando um novo produto com os as informações que o usuario passar 
+     
     Produto  produto = new Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
-    // estou retornando o produto  
+     
     est.IncluirProduto(produto);
     return produto;
        
@@ -17,7 +14,19 @@ class Fabrica{
   public void AssociarEstoque(Estoque e){
     est=e;
   }
-  
+
+  public bool VerificarCodigo(List <Produto> p , string cod){
+
+    List <string> codigos = new List <string>();
+    foreach(Produto vc in p){
+      codigos.Add(vc.getCodigo());
+    }
+    if(codigos.IndexOf(cod)!= -1){
+      return false;
+    }
+    return true;
+ 
+  }
 }
 
 
