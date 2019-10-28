@@ -1,0 +1,5 @@
+Email: 8
+empresa: 4
+Nome do cliente: 7
+Quantidade: 9
+Valor do Produto: 5

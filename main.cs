@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 class MainClass {
   public static void Main (string[] args) {
@@ -23,7 +25,8 @@ class MainClass {
     while (opcao == 1 || senha == 1234 || opcao == 2 || opcao == 3){
 
     Console.WriteLine(" Digite 4 para sair:");
-  
+
+    
     Console.WriteLine(" Digite 1 para fabricar um produto:\n Digite 2 para entrar no sistema de estoque:\n Digite 3 para pedir produto do estoque:");
     opcao =int.Parse(Console.ReadLine());
    
@@ -51,7 +54,9 @@ class MainClass {
       Console.WriteLine("Valor desejado para venda:");
       int valor_desejada = int.Parse(Console.ReadLine());
 
-      Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
+      
+
+      Produto produto = fabrica.Criar_Produto(codigo,tipo,tamanho,descrição,custo,quantidade);
       
       Console.WriteLine(produto.ResumoDados());
 
@@ -108,13 +113,21 @@ class MainClass {
     Console.WriteLine("Digite o nome da empresa:");
     string empresa = Console.ReadLine();
 
-    VenderProd venderproduto = new VenderProd(quantidadeCompra, nome , email, empresa);
-    
-     Console.WriteLine(venderproduto.MostraCompra());
+    Console.WriteLine("Valor desejado para venda:");
+    int valor_desejada = int.Parse(Console.ReadLine());
+
+    VenderProd venderproduto = new VenderProd(quantidadeCompra, nome , email, empresa,valor_desejada);
+
+    Console.WriteLine(venderproduto.MostraCompra());
+
+    venderproduto.ControleDeVendas(email,empresa,nome,quantidadeCompra,valor_desejada);
+
  
     }  
     
     if (opcao == 4){
+      File.Delete("compras.txt");
+      
       break;
     }
     

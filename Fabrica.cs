@@ -3,13 +3,12 @@ class Fabrica{
 
   Estoque  est = new Estoque();
  
-  public Produto Criar_Produto(string codigo, string tipo,int tamanho , string descrição,float custo,int quantidade , float valor_desejada){
+  public Produto Criar_Produto(string codigo, string tipo,int tamanho , string descrição,float custo,int quantidade ){
      
-    Produto  produto = new Produto(codigo,tipo,tamanho,descrição,custo,quantidade,valor_desejada);
+    Produto  produto = new Produto(codigo,tipo,tamanho,descrição,custo,quantidade);
      
     est.IncluirProduto(produto);
     return produto;
-       
   }
   public void AssociarEstoque(Estoque e){
     est=e;

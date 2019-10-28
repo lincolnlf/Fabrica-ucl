@@ -49,8 +49,9 @@ class Estoque{
 
     foreach(Produto p in prods){
       if ( bc == p.getCodigo() ){
-        p.setQuantidade(p.getQuantidade()-qtd);
-
+        
+          p.setQuantidade(p.getQuantidade()-qtd);
+        
         
       }
 
